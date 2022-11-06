@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Sintaxis básica de JavaScript</title>
+  </head>
+  <body>
+    <div class="contenido">
+      <h1>Sintaxis básica de JavaScript</h1>
+      <h2 style="color: red">Control de flujo y manejo de errores</h2>
+      <h2>if..else</h2>
+      <h2>Código</h2>
+      <pre>
+        n = 6; 
+        if (n > 5){ 
+          document.write("Resultado: el número es mayor a 5");
+        } 
+        else { document.write("Resultado: el número es menor a 5"); }
+       
+      </pre>
+      <script>
+        n = 6;
+        if (n > 5) {
+          document.write("Resultado: el número es mayor a 5");
+        } else {
+          document.write("Resultado: el número es menor a 5");
+        }
+      </script>
+
+      <!-- Switch -->
+      <h2>Switch</h2>
+      <pre>
+        expr = "Manzanas"; 
+        switch (expr) { 
+        case "Naranjas":
+          document.write("El kilogramo de naranjas cuesta $0.59.");
+        break;
+        case "Manzanas": 
+          document.write("El kilogramo de manzanas cuesta $0.32."); 
+        break; 
+        case "Platanos": 
+          document.write("El kilogramo de platanos cuesta $0.48."); 
+        break; 
+        case "Cerezas": 
+          document.write("El kilogramo de cerezas cuesta $3.00."); 
+        break; 
+        case "Mangos":
+        case "Papayas": 
+          document.write("El kilogramo de mangos y papayas cuesta $2.79."); 
+        break;
+        default: 
+          document.write( "Lo lamentamos, por el momento no disponemos de " + expr
+        + "." ); <br />
+        }
+      </pre>
+      <br />
+      <script>
+        expr = "Manzanas";
+        document.write("<b>Salida:</b> <br>");
+        switch (expr) {
+          case "Naranjas":
+            document.write("El kilogramo de naranjas cuesta $0.59.");
+            break;
+          case "Manzanas":
+            document.write("El kilogramo de manzanas cuesta $0.32.");
+            break;
+          case "Platanos":
+            document.write("El kilogramo de platanos cuesta $0.48.");
+            break;
+          case "Cerezas":
+            document.write("El kilogramo de cerezas cuesta $3.00.");
+            break;
+          case "Mangos":
+          case "Papayas":
+            document.write("El kilogramo de mangos y papayas cuesta $2.79.");
+            break;
+          default:
+            document.write(
+              "Lo lamentamos, por el momento no disponemos de " + expr + "."
+            );
+        }
+
+        document.write("¿Hay algo más que te quisiera consultar?");
+      </script>
+      <!-- try/catch/throw -->
+      <h2>try/catch/throw</h2>
+      <pre>
+        try { 
+          functionNoExistente(); 
+        } catch (error) { 
+          console.error("Funcion inexistente" + error); 
+        } 
+      </pre>
+      <br />
+      <p>
+        <b> Salida en la consola de errores:</b> <br />
+        Funcion inexistenteReferenceError: functionNoExistente is not defined
+      </p>
+      <script>
+        try {
+          functionNoExistente();
+        } catch (error) {
+          console.error("Funcion inexistente" + error);
+        }
+      </script>
+      <!-- For -->
+      <h2 style="color: red">Bucles e iteración</h2>
+      <h2>For</h2>
+      <h3>Código</h3>
+      <pre>
+          function howMany(selectObject) { 
+            let numberSelected = 0;
+            for (let i = 0; i < selectObject.options.length; i++) { 
+              if (selectObject.options[i].selected) { 
+                numberSelected++; 
+              } 
+            } 
+              return numberSelected; 
+          }
+      </pre>
+      <form name="selectForm">
+        <p>
+          <label for="musicTypes"
+            >Elija algunos tipos de música, luego haga clic en el botón de
+            abajo:</label
+          >
+          <select
+            id="musicTypes"
+            name="musicTypes"
+            multiple="multiple"
+            style="display: block"
+          >
+            <option selected="selected">R&B</option>
+            <option>Jazz</option>
+            <option>Blues</option>
+            <option>New Age</option>
+            <option>Classical</option>
+            <option>Opera</option>
+          </select>
+        </p>
+        <p>
+          <input id="btn" type="button" value="¿Cuántos están seleccionados?" />
+        </p>
+      </form>
+
+      <script>
+        function howMany(selectObject) {
+          let numberSelected = 0;
+          for (let i = 0; i < selectObject.options.length; i++) {
+            if (selectObject.options[i].selected) {
+              numberSelected++;
+            }
+          }
+          return numberSelected;
+        }
+
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+          alert(
+            "Número de opciones seleccionadas: " +
+              howMany(document.selectForm.musicTypes)
+          );
+        });
+      </script>
+      <br />
+      <!-- -- -->
+      <h2>For in</h2>
+      <pre>
+        const obj = { a: 1, b: 2, c: 3 }; 
+
+        for (const prop in obj) { 
+        document.write(`objeto ${prop} =
+        ${obj[prop]}`); }
+      </pre>
+      <br />
+      <script>
+        const obj = { a: 1, b: 2, c: 3 };
+
+        for (const prop in obj) {
+          document.write(`objeto ${prop} = ${obj[prop]} <br>`);
+        }
+      </script>
+
+      <h2>For of</h2>
+      <p>Código</p>
+      <pre>
+        const iterable = [10, 20, 30]; 
+        for(let value of iterable) { value += 1; }
+      </pre>
+      <br />
+      <script>
+        const iterable = [10, 20, 30];
+        for (let value of iterable) {
+          value += 1;
+          document.write("<br>Salida: " + value + "<br>");
+        }
+      </script>
+      <br />
+
+      <!-- While -->
+      <h2>While</h2>
+      <pre>
+        let n = 0; 
+        let x = 0; 
+        while (n < 3) { 
+        n++; 
+        x += n; 
+        document.write("X: " + x "); } 
+      </pre>
+      <br />
+      <script>
+        let n = 0;
+        let x = 0;
+        document.write("<p>Salida: </p> <br>");
+        while (n < 3) {
+          n++;
+          x += n;
+          document.write("X: " + x + "<br>");
+        }
+      </script>
+
+      <h2>Do..While</h2>
+      <code>
+        let i = 0; <br />
+        do { <br />
+        i += 1; <br />
+        document.write("Salida: " + i); <br />
+        } while (i < 5); <br />
+      </code>
+      <br />
+      <script>
+        let i = 0;
+        do {
+          i += 1;
+          document.write("Salida: " + i + "<br />");
+        } while (i < 5);
+      </script>
+
+      <!-- Declaración y lladado de Funciones -->
+      <h2 style="color: red">Declaración y lladado de Funciones</h2>
+      <h3>Código</h3>
+      <code>
+        const square = function (number) { <br />
+        return number * number;<br />
+        };<br />
+        document.write("Salida: " + square(4));
+      </code>
+      <br />
+      <script>
+        const square = function (number) {
+          return number * number;
+        };
+        document.write("Salida: " + square(4));
+      </script>
+      <!-- Expresiones y operadores -->
+      <h2>Expresiones y operadores</h2>
+      <h3>Asignación, Comparación y Operadores lógicos</h3>
+      <pre>
+        n= 5 // asignación
+        if(n == 5){// Comparación 
+          document.write("La validación es TRUE") 
+        }
+        else{ document.write("La validación es FALSE") }
+      </pre>
+      <h3>Operadores aritméticos</h3>
+      <pre>
+          document.write('adición ', 7+2);
+          document.write('sustracción ', 7-2);
+          document.write('multiplicación ', 7*2);
+          document.write('división ', 7/2);
+          document.write('resto ', 7%2);
+      </pre>
+      <!-- Números y fechas  -->
+      <h2>Números y fechas</h2>
+      <h3>Objeto Number</h3>
+      <pre>
+        new Number(value);
+        var a = new Number('123'); // a === 123 es false
+        var b = Number('123'); // b === 123 es true
+        a instanceof Number; // es true
+        b instanceof Number; // es false
+      </pre>
+      <h3>Objeto Math</h3>
+      <pre>
+        x = Math.pow(3, 3);
+        document.write(x);
+      </pre>
+      <script>
+        x = Math.pow(3, 3);
+        document.write("Resultado:" + x);
+      </script>
+      <h3>ObjetoDate</h3>
+      <p><b>Código</b></p>
+      <pre>
+        hoy = new Date();
+        document.write("La fecha actual es:");
+        document.write(hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear());
+      </pre>
+      <p><b>Salida</b></p>
+      <script>
+        hoy = new Date();
+        document.write("La fecha actual es:");
+        document.write(
+          hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear()
+        );
+      </script>
+      <!-- Colecciones indexadas  -->
+      <h2>Colecciones indexadas</h2>
+      <h3>Código</h3>
+      <pre>
+        var datos = ["Frío", 33, false, "nube", -11.22, true, 3.33,"variado"];
+        datos.forEach(function (dato) {
+          document.write("Dato: " + dato);
+        });
+      </pre>
+      <h3>Iteración del array</h3>
+      <script>
+        var datos = ["Frío", 33, false, "nube", -11.22, true, 3.33, "variado"];
+        datos.forEach(function (dato) {
+          document.write("Dato: " + dato + "<br>");
+        });
+      </script>
+      <!-- DOM   -->
+      <h2>DOM</h2>
+      <h3>Encontrar elementos HTML por ID</h3>
+      <p><b>Código</b></p>
+      <pre>
+          p= id="parrafo">Soy un parrafo
+
+          parrafo = document.getElementById("parrafo");
+          document.getElementById("parrafo").innerHTML =
+          parrafo.innerHTML + " modificado";
+      </pre>
+      <p id="parrafo">Soy un parrafo</p>
+      <script>
+        parrafo = document.getElementById("parrafo");
+        document.getElementById("parrafo").innerHTML =
+          parrafo.innerHTML + " modificado";
+      </script>
+      <h3>Encontrar elementos HTML por nombre de etiqueta</h3>
+      <p><b>Código</b></p>
+      <pre>
+        textos = document.getElementsByTagName("a");
+        tercerTexto = textos[2];
+        document.write("texto seleccionado: " + tercerTexto.innerHTML);
+      </pre>
+      <h4>Textos</h4>
+      <a>texto 1</a>
+      <a>texto 2</a>
+      <a>texto 3</a>
+
+      <script>
+        textos = document.getElementsByTagName("a");
+        tercerTexto = textos[2];
+        document.write("texto seleccionado: " + tercerTexto.innerHTML);
+      </script>
+
+      <!--  -->
+      <h3>Encontrar elementos HTML por nombre de clase</h3>
+      <p><b>Código</b></p>
+      <pre>
+        var up_forms = document.getElementsByName("up");
+      </pre>
+      <form name="up"><input type="text" /></form>
+      <script>
+        var up_forms = document.getElementsByName("up");
+      </script>
+
+      <h3>Encontrar elementos HTML mediante selectores CSS</h3>
+      <p><b>Código</b></p>
+      <pre>
+        titulo = document.querySelector("p.titulo");
+        document.write(
+          "El título -" + titulo.innerHTML + "- ha sido seleccionado"
+        );
+      </pre>
+      <p class="titulo">Este es un título</p>
+      <script>
+        titulo = document.querySelector("p.titulo");
+        document.write(
+          "El título -" + titulo.innerHTML + "- ha sido seleccionado"
+        );
+      </script>
+
+      <h3>Encontrar elementos HTML por colecciones de objetos HTML</h3>
+      <p><b>Código</b></p>
+      <pre>
+        parrafos = document.querySelectorAll("p");
+        parrafos.forEach(function (parrafoI) {
+          document.write(parrafoI.innerHTML + "<br> ");
+        });
+      </pre>
+      <h2 style="color: red">TODAS LAS ETIQUETAS P DEL DOCUMENTO</h2>
+      <script>
+        parrafos = document.querySelectorAll("p");
+        parrafos.forEach(function (parrafoI) {
+          document.write(parrafoI.innerHTML + "<br> <br> ");
+        });
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+.contenido {
+  margin: 0 auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
